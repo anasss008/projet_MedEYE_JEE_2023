@@ -11,7 +11,7 @@ class ImgIn(BaseModel):
 
 
 class PredictionOut(BaseModel):
-    classification: float
+    prediction: float
 
 
 @app.get("/")
