@@ -91,7 +91,7 @@ function Faq() {
                       : 'hidden px-4 pb-5 sm:px-6 sm:pb-6'
                   }
                 >
-                  <p>{item.answer}</p>
+                  <p className="font-light">{item.answer}</p>
                 </div>
               </div>
             ))}
