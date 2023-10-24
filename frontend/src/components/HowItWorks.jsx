@@ -7,7 +7,7 @@ import { ReactComponent as SvgComponent5 } from '../images/svg5.svg';
 
 const HowItWorks = () => {
   return (
-    <div className="px-40 py-10">
+    <div className="px-40 py-10" id="how-works">
       <h1 className="text-3xl mb-20 text-center font-extrabold">
         How It Works
       </h1>

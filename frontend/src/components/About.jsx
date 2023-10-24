@@ -6,7 +6,7 @@ import Ayoub from '../images/sarab.jfif';
 
 function About() {
   return (
-    <div className="pt-36 space-y-8">
+    <div className="pt-36 space-y-8" id="about">
       <h1 className="font-extrabold text-4xl text-center">About</h1>
       <p className="text-center text-gray-600">
         We are a team of second year studens of Institut National des Postes et

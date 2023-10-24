@@ -31,7 +31,7 @@ function Faq() {
     },
   ];
   return (
-    <section className="py-24 flex justify-center">
+    <section className="py-24 flex justify-center" id="faq">
       <div>
         <div className="max-w-2xl text-center">
           <h2 className="font-bold leading-tight text-black text-4xl">
@@ -40,7 +40,7 @@ function Faq() {
           <p className="text-center text-gray-600 textbase my-9">
             Didn’t find the answer you are looking for?{' '}
             <a
-              href="/#"
+              href="#contact"
               title=""
               className="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
             >

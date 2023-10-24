@@ -1,17 +1,19 @@
 import React from 'react';
+import logo from '../images/logo.svg.svg';
 
 function Header() {
   return (
     <header className="bg-white pb-0">
       <div className="mx-auto max-w-7xl px-8">
         <nav className="flex items-center justify-between h-20">
-          <div className="flex-shrink-0">
+          <div className="flex items-center space-x-1">
+            <img src={logo} alt="logo" />
             <h1 className="font-bold">MED EYE</h1>
           </div>
 
           <div className="flex items-center ml-auto space-x-10">
             <a
-              href="/#"
+              href="#how-works"
               title=""
               className="text-base font-medium text-black transition-all duration-200 hover:text-gray-600 focus:text-gray-600"
             >
@@ -20,7 +22,7 @@ function Header() {
             </a>
 
             <a
-              href="/#"
+              href="#faq"
               title=""
               className="text-base font-medium text-black transition-all duration-200 hover:text-gray-600 focus:text-gray-600"
             >
@@ -29,7 +31,7 @@ function Header() {
             </a>
 
             <a
-              href="/#"
+              href="#about"
               title=""
               className="text-base font-medium text-black transition-all duration-200 hover:text-gray-600 focus:text-gray-600"
             >
@@ -38,7 +40,7 @@ function Header() {
             </a>
 
             <a
-              href="/#"
+              href="#contact"
               title=""
               className="text-base font-medium text-black transition-all duration-200 hover:text-gray-600 focus:text-gray-600"
             >
