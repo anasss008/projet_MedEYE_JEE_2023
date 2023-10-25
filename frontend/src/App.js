@@ -5,18 +5,32 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
 
 function App() {
   return (
-    <>
+    <Router>
       <Header />
-      <Hero />
-      <About />
-      <Faq />
-      <HowItWorks />
-      <ContactUs />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero />
+              <About />
+              <Faq />
+              <HowItWorks />
+              <ContactUs />
+            </>
+          }
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sign-up" element={<SignUp />} />
+      </Routes>
       <Footer />
-    </>
+    </Router>
   );
 }
 
