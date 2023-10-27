@@ -1,7 +1,7 @@
-package com.medeye.test.services;
+package com.medeye.web.services;
 
-import com.medeye.test.entities.Healthworker;
-import com.medeye.test.repositories.HealthworkerRepository;
+import com.medeye.web.entities.Healthworker;
+import com.medeye.web.repositories.HealthworkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

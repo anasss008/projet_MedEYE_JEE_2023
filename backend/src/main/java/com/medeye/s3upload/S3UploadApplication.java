@@ -1,4 +1,4 @@
-package net.codejava.aws;
+package com.medeye.s3upload;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

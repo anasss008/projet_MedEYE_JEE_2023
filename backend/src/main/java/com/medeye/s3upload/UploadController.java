@@ -1,6 +1,6 @@
-package net.codejava.aws;
+package com.medeye.s3upload;
 import java.io.IOException;
-import java.util.regex.Pattern;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
 
 @Controller
-public class Maincontroller {
+public class UploadController {
 	
 	@GetMapping("")
 	public String showHomePage() {

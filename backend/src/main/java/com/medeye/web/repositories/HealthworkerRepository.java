@@ -1,7 +1,6 @@
-package com.medeye.test.repositories;
+package com.medeye.web.repositories;
 
-import com.medeye.test.entities.Healthworker;
-import org.springframework.context.annotation.ComponentScan;
+import com.medeye.web.entities.Healthworker;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
-package com.medeye.test.controllers;
+package com.medeye.web.controllers;
 
-import com.medeye.test.entities.Healthworker;
-import com.medeye.test.services.HealthworkerService;
+import com.medeye.web.entities.Healthworker;
+import com.medeye.web.services.HealthworkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

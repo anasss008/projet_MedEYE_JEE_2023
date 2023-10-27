@@ -1,4 +1,4 @@
-package net.codejava.aws;
+package com.medeye.s3upload;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
