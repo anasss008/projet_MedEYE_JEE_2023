@@ -10,4 +10,6 @@ import java.util.Optional;
 @Repository
 public interface HealthworkerRepository  extends JpaRepository<Healthworker,Long> {
     Optional<Healthworker> findByUsername(String username);
+
+
 }
