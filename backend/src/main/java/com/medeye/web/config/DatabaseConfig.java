@@ -39,11 +39,11 @@ public class DatabaseConfig {
         return em;
     }
 
-    @Bean
+    /*@Bean
     public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
-    }
+    }*/
 
 }
