@@ -1,5 +1,7 @@
 package com.medeye.s3upload;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,47 +12,55 @@ import org.springframework.ui.Model;
 
 @Controller
 public class UploadController {
-	
+
 	@GetMapping("")
 	public String showHomePage() {
 		return "form";
 	}
-	
+
 	@PostMapping("/upload")
-	public String uploadFile(String name, String email, @RequestParam("image") MultipartFile multipart, Model output) throws IOException{
+	public String uploadFile(String first_name,
+							 String last_name,
+							 String address,
+							 String email,
+							 @RequestParam("image") MultipartFile multipart,
+							 Model output) throws IOException{
+
 		String fileName = multipart.getOriginalFilename();
-		String pattern = "[<>#%{}\s]";
-		fileName = fileName.replaceAll(pattern, "");
-		System.out.println("name: " + name);
+		Pattern pattern = Pattern.compile("[^a-zA-Z0-9.]");
+		assert fileName != null;
+		Matcher matcher = pattern.matcher(fileName);
+		fileName = matcher.replaceAll("");
+		System.out.println("name: " + first_name);
 		System.out.println("email: " + email);
 		System.out.println("filename: " + fileName);
 		String message = "";
 		String response;
-		
+
 		try {
-		S3Util.uploadFile(fileName, multipart.getInputStream());
-		message = "Operation Succeded";
+			S3Util.uploadFile(fileName, multipart.getInputStream());
+			message = "Operation Succeded";
 		} catch(Exception ex){
 			message = ex.getMessage();
 		}
-		
-		
+
+
 		String object_url = "https://ayoub123f.s3.eu-west-3.amazonaws.com/images/" + fileName ;
 		System.out.println(object_url);
-	    PostReq reqobj = new PostReq();
-	    response = reqobj.send(object_url);
+		PostReq reqobj = new PostReq();
+		response = reqobj.send(object_url);
 		System.out.println(message);
 		try {
-		   output.addAttribute("name", fileName);
-		   output.addAttribute("response", response);
-		   output.addAttribute("url", object_url);
+			output.addAttribute("name", fileName);
+			output.addAttribute("response", response);
+			output.addAttribute("url", object_url);
 		}
 		catch(Exception ex){
 			System.out.println("method doesn't exist");
 		}
-		
+
 		return "output";
-		
+
 	}
 
 }

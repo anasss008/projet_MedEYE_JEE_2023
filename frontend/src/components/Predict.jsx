@@ -1,21 +1,20 @@
 import { PhotoIcon } from '@heroicons/react/24/solid';
 import axios from 'axios';
 import { useState } from 'react';
-const api_url = "http://localhost:8080/upload"
-
+const api_url = 'http://localhost:8080/upload';
 
 export default function Predict() {
   const initialState = {
-    first_name: "",
-    last_name: "",
-    address: "",
-    email: "",
+    first_name: '',
+    last_name: '',
+    address: '',
+    email: '',
     image: null,
   };
 
   const [person, setPerson] = useState(initialState);
   const [response, setResponse] = useState(null);
-
+  const [imagePreview, setImagePreview] = useState(null);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -27,9 +26,10 @@ export default function Predict() {
     formData.append('address', person.address);
     formData.append('image', person.image);
 
-    axios.post(api_url, formData)
+    axios
+      .post(api_url, formData)
       .then((response) => {
-        console.log("sent successfully");
+        console.log('sent successfully');
         setResponse(response.data);
         console.log(response.data);
       })
@@ -42,19 +42,19 @@ export default function Predict() {
     const { name, value, type } = event.target;
 
     if (type === 'file') {
-      console.log("image uploaded");
+      setImagePreview(URL.createObjectURL(event.target.files[0]));
+      console.log('image uploaded');
       setPerson((prev) => {
         return { ...prev, [name]: event.target.files[0] };
       });
     } else {
       console.log(name);
-      console.log("text entered");
+      console.log('text entered');
       setPerson((prev) => {
         return { ...prev, [name]: value };
       });
     }
   };
-      
 
   return (
     <form onSubmit={submitForm}>
@@ -102,7 +102,6 @@ export default function Predict() {
                   name="last_name"
                   id="last-name"
                   autoComplete="family-name"
-               
                   onChange={onChangeHandler}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                 />
@@ -122,7 +121,6 @@ export default function Predict() {
                   name="email"
                   type="email"
                   autoComplete="email"
-                
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                   onChange={onChangeHandler}
                 />
@@ -141,7 +139,6 @@ export default function Predict() {
                   type="text"
                   name="address"
                   id="address"
-                  
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                   onChange={onChangeHandler}
                 />
@@ -155,33 +152,40 @@ export default function Predict() {
             >
               Upload Patient's Fundus photo
             </label>
-            <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-              <div className="text-center">
-                <PhotoIcon
-                  className="mx-auto h-12 w-12text-gray-300"
-                  aria-hidden="true"
-                />
-                <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                  <label
-                    htmlFor="file-upload"
-                    className="relative cursor-pointer rounded-md bg-white font-semibold text-gray-600 hover:text-gray-500"
-                  >
-                    <span>Upload a file</span>
-                    <input
-                      id="file-upload"
-                      name="image"
-                      type="file"
-                      className="sr-only"
-                      onChange={onChangeHandler}
-                    />
-                  </label>
-                  <p className="pl-1">or drag and drop</p>
+            {!imagePreview && (
+              <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                <div className="text-center">
+                  <PhotoIcon
+                    className="mx-auto h-12 w-12text-gray-300"
+                    aria-hidden="true"
+                  />
+                  <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                    <label
+                      htmlFor="file-upload"
+                      className="relative cursor-pointer rounded-md bg-white font-semibold text-gray-600 hover:text-gray-500"
+                    >
+                      <span>Upload a file</span>
+                      <input
+                        id="file-upload"
+                        name="image"
+                        type="file"
+                        className="sr-only"
+                        onChange={onChangeHandler}
+                      />
+                    </label>
+                    <p className="pl-1">or drag and drop</p>
+                  </div>
+                  <p className="text-xs leading-5 text-gray-600">
+                    PNG, JPG, GIF up to 10MB
+                  </p>
                 </div>
-                <p className="text-xs leading-5 text-gray-600">
-                  PNG, JPG, GIF up to 10MB
-                </p>
               </div>
-            </div>
+            )}
+            {imagePreview && (
+              <div className="pt-10 max-w-lg mx-auto">
+                <img src={imagePreview} className="" alt="" />
+              </div>
+            )}
           </div>
         </div>
       </div>
