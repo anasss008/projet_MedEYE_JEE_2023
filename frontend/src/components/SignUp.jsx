@@ -12,28 +12,28 @@
   }
   ```
 */
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const [token, setToken] = useState(null); // State to store the token
-  const [error, setError] = useState(""); // State to handle errors
+  const [error, setError] = useState(''); // State to handle errors
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission
 
     try {
       const response = await fetch(
-        "http://localhost:8080/authentication/register",
+        'http://localhost:8080/authentication/register',
         {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify(formData),
         }
@@ -43,7 +43,7 @@ export default function SignUp() {
         const responseData = await response.json();
         const receivedToken = responseData.token; // Assuming the token is provided as "token" in the response
         setToken(receivedToken);
-        localStorage.setItem("token", receivedToken);
+        localStorage.setItem('token', receivedToken);
         console.log(receivedToken);
         // You can now handle the token, e.g., store it in local storage or a state management system for user authentication
       } else {
@@ -51,8 +51,8 @@ export default function SignUp() {
         setError(errorData.errorMessage);
       }
     } catch (error) {
-      console.error("Error:", error);
-      setError("An error occurred while making the request.");
+      console.error('Error:', error);
+      setError('An error occurred while making the request.');
     }
   };
 
@@ -89,7 +89,7 @@ export default function SignUp() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                   value={formData.email}
                   onChange={handleInputChange}
                 />
@@ -112,7 +112,7 @@ export default function SignUp() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 text-sm leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6"
                   value={formData.password}
                   onChange={handleInputChange}
                 />
@@ -134,7 +134,7 @@ export default function SignUp() {
                   name="verifypassword"
                   type="password"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 text-sm leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6"
                 />
               </div>
             </div>
@@ -142,7 +142,7 @@ export default function SignUp() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
+                className="flex w-full justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500"
               >
                 Sign up
               </button>
@@ -150,7 +150,7 @@ export default function SignUp() {
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Already have an account{" "}
+            Already have an account{' '}
             <Link
               to="/login"
               className="font-semibold leading-6 text-gray-900 hover:text-gray-500"
