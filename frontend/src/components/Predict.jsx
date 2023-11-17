@@ -1,8 +1,63 @@
 import { PhotoIcon } from '@heroicons/react/24/solid';
+import axios from 'axios';
+import { useState } from 'react';
+const api_url = "http://localhost:8080/upload"
+
 
 export default function Predict() {
+  const initialState = {
+    first_name: "",
+    last_name: "",
+    address: "",
+    email: "",
+    image: null,
+  };
+
+  const [person, setPerson] = useState(initialState);
+  const [response, setResponse] = useState(null);
+
+
+  const submitForm = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('first_name', person.first_name);
+    formData.append('last_name', person.last_name);
+    formData.append('email', person.email);
+    formData.append('address', person.address);
+    formData.append('image', person.image);
+
+    axios.post(api_url, formData)
+      .then((response) => {
+        console.log("sent successfully");
+        setResponse(response.data);
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const onChangeHandler = (event) => {
+    const { name, value, type } = event.target;
+
+    if (type === 'file') {
+      console.log("image uploaded");
+      setPerson((prev) => {
+        return { ...prev, [name]: event.target.files[0] };
+      });
+    } else {
+      console.log(name);
+      console.log("text entered");
+      setPerson((prev) => {
+        return { ...prev, [name]: value };
+      });
+    }
+  };
+      
+
   return (
-    <form>
+    <form onSubmit={submitForm}>
       <div className="max-w-xl py-20 mx-auto space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base text-center font-semibold leading-7 text-gray-900">
@@ -25,10 +80,11 @@ export default function Predict() {
               <div className="mt-2">
                 <input
                   type="text"
-                  name="first-name"
+                  name="first_name"
                   id="first-name"
                   autoComplete="given-name"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+                  onChange={onChangeHandler}
                 />
               </div>
             </div>
@@ -43,10 +99,11 @@ export default function Predict() {
               <div className="mt-2">
                 <input
                   type="text"
-                  name="last-name"
+                  name="last_name"
                   id="last-name"
                   autoComplete="family-name"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+                  onChange={onChangeHandler}
                 />
               </div>
             </div>
@@ -65,6 +122,7 @@ export default function Predict() {
                   type="email"
                   autoComplete="email"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+                  onChange={onChangeHandler}
                 />
               </div>
             </div>
@@ -82,6 +140,7 @@ export default function Predict() {
                   name="address"
                   id="address"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+                  onChange={onChangeHandler}
                 />
               </div>
             </div>
@@ -107,9 +166,10 @@ export default function Predict() {
                     <span>Upload a file</span>
                     <input
                       id="file-upload"
-                      name="file-upload"
+                      name="image"
                       type="file"
                       className="sr-only"
+                      onChange={onChangeHandler}
                     />
                   </label>
                   <p className="pl-1">or drag and drop</p>
