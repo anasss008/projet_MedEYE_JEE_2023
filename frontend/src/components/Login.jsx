@@ -1,52 +1,57 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    username: '',
+    password: '',
   });
 
-  const [token, setToken] = useState(null); // State to store the token
-  const [error, setError] = useState(""); // State to handle errors
+  const [auth, setAuth] = useState(false); // State to store the token
+  const [error, setError] = useState(''); // State to handle errors
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission
 
     try {
-      const response = await fetch(
-        "http://localhost:8080/authentication/authenticate",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      console.log(formData);
+      const response = await fetch('http://localhost:8080/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
       if (response.ok) {
-        const responseData = await response.json();
-        const receivedToken = responseData.token; // Assuming the token is provided as "token" in the response
-        setToken(receivedToken);
-        localStorage.setItem("token", receivedToken);
-        console.log(receivedToken);
-        // You can now handle the token, e.g., store it in local storage or a state management system for user authentication
+        const responseData = await response.text();
+        console.log(responseData);
+        setAuth(true);
+        navigate('/predict');
       } else {
         const errorData = await response.json();
         setError(errorData.errorMessage);
       }
     } catch (error) {
-      console.error("Error:", error);
-      setError("An error occurred while making the request.");
+      console.error('Error:', error);
+      setError('An error occurred while making the request.');
     }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const handleEmailChange = (e) => {
+    const username = e.target.value;
     setFormData({
       ...formData,
-      [name]: value,
+      username,
+    });
+  };
+  const handlePasswordChange = (e) => {
+    const password = e.target.value;
+    setFormData({
+      ...formData,
+      password,
     });
   };
 
@@ -62,22 +67,17 @@ export default function Login() {
         <div className="mt-10 mx-auto w-full max-w-sm">
           <form className="space-y-6" action="#" onSubmit={handleSubmit}>
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
+              <label className="block text-sm font-medium leading-6 text-gray-900">
                 Email address
               </label>
               <div className="mt-2">
                 <input
                   id="email"
                   name="email"
-                  type="email"
-                  autoComplete="email"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
-                  value={formData.email}
-                  onChange={handleInputChange}
+                  value={formData.username}
+                  onChange={handleEmailChange}
                 />
               </div>
             </div>
@@ -96,11 +96,10 @@ export default function Login() {
                   id="password"
                   name="password"
                   type="password"
-                  autoComplete="current-password"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 text-sm leading-6"
                   value={formData.password}
-                  onChange={handleInputChange}
+                  onChange={handlePasswordChange}
                 />
               </div>
             </div>
@@ -119,7 +118,7 @@ export default function Login() {
           {error && <p className="text-center text-sm text-red-500">{error}</p>}
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Don't have an account{" "}
+            Don't have an account{' '}
             <Link
               to="/sign-up"
               className="font-semibold leading-6 text-gray-900 hover:text-gray-500"

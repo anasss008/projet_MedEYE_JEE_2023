@@ -23,7 +23,7 @@ public class DatabaseConfig {
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/Health");
         dataSource.setUsername("postgres");
-        dataSource.setPassword("Pxhd4850");
+        dataSource.setPassword("anas");
         return dataSource;
     }
 

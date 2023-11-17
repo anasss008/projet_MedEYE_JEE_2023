@@ -9,16 +9,17 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Predict from './components/Predict';
+import HWHeader from './components/HWHeader';
 
 function App() {
   return (
     <Router>
-      <Header />
       <Routes>
         <Route
           path="/"
           element={
             <>
+              <Header />
               <Hero />
               <About />
               <Faq />
@@ -27,9 +28,33 @@ function App() {
             </>
           }
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/predict" element={<Predict />} />
+        <Route
+          path="/login"
+          element={
+            <>
+              <Header />
+              <Login />
+            </>
+          }
+        />
+        <Route
+          path="/sign-up"
+          element={
+            <>
+              <Header />
+              <SignUp />
+            </>
+          }
+        />
+        <Route
+          path="/predict"
+          element={
+            <>
+              <HWHeader />
+              <Predict />
+            </>
+          }
+        />
       </Routes>
       <Footer />
     </Router>
