@@ -23,6 +23,7 @@ public class DatabaseConfig {
                 .build();
     }
 
+
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
         return new JdbcTemplate(dataSource);
