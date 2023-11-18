@@ -3,9 +3,12 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
@@ -19,47 +22,35 @@ public class UploadController {
 	}
 
 	@PostMapping("/upload")
-	public String uploadFile(String first_name,
-							 String last_name,
-							 String address,
-							 String email,
-							 @RequestParam("image") MultipartFile multipart,
-							 Model output) throws IOException{
+	public ResponseEntity<String> uploadFile(String first_name,
+													String last_name,
+													String address,
+													String email,
+													@RequestParam("image") MultipartFile multipart) throws IOException{
 
 		String fileName = multipart.getOriginalFilename();
-		Pattern pattern = Pattern.compile("[^a-zA-Z0-9.]");
-		assert fileName != null;
-		Matcher matcher = pattern.matcher(fileName);
-		fileName = matcher.replaceAll("");
-		System.out.println("name: " + first_name);
-		System.out.println("email: " + email);
-		System.out.println("filename: " + fileName);
-		String message = "";
-		String response;
+		fileName = S3Util.renameFile(fileName);
+		String fileUrl= "";
 
 		try {
 			S3Util.uploadFile(fileName, multipart.getInputStream());
-			message = "Operation Succeded";
+			fileUrl = S3Util.waitFileUrl(fileName);
+
 		} catch(Exception ex){
-			message = ex.getMessage();
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("File upload failed");
 		}
 
+		// working with model api
 
-		String object_url = "https://ayoub123f.s3.eu-west-3.amazonaws.com/images/" + fileName ;
-		System.out.println(object_url);
-		PostReq reqobj = new PostReq();
-		response = reqobj.send(object_url);
-		System.out.println(message);
 		try {
-			output.addAttribute("name", fileName);
-			output.addAttribute("response", response);
-			output.addAttribute("url", object_url);
-		}
-		catch(Exception ex){
-			System.out.println("method doesn't exist");
+			String response = PostReq.send(fileUrl);
+            return ResponseEntity.ok().body(response);
 		}
 
-		return "output";
+		catch(Exception ex){
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");
+		}
 
 	}
 

@@ -13,7 +13,7 @@ export default function Predict() {
   };
 
   const [person, setPerson] = useState(initialState);
-  const [response, setResponse] = useState(null);
+  const [prediction, setPrediction] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
   const submitForm = (e) => {
@@ -30,8 +30,7 @@ export default function Predict() {
       .post(api_url, formData)
       .then((response) => {
         console.log('sent successfully');
-        setResponse(response.data);
-        console.log(response.data);
+        setPrediction(response.data.prediction);
       })
       .catch(function (error) {
         console.log(error);
@@ -43,13 +42,11 @@ export default function Predict() {
 
     if (type === 'file') {
       setImagePreview(URL.createObjectURL(event.target.files[0]));
-      console.log('image uploaded');
       setPerson((prev) => {
         return { ...prev, [name]: event.target.files[0] };
       });
     } else {
-      console.log(name);
-      console.log('text entered');
+
       setPerson((prev) => {
         return { ...prev, [name]: value };
       });
@@ -198,6 +195,12 @@ export default function Predict() {
           Send for Prediction
         </button>
       </div>
+
+      {prediction && (
+        <div>
+          <p>Model prediction: {prediction}</p>
+        </div>
+      )}
     </form>
   );
 }
