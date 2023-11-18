@@ -14,53 +14,53 @@
 */
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: '',
   });
-
-  const [token, setToken] = useState(null); // State to store the token
-  const [error, setError] = useState(''); // State to handle errors
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission
 
     try {
-      const response = await fetch(
-        'http://localhost:8080/authentication/register',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch('http://localhost:8080/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
       if (response.ok) {
-        const responseData = await response.json();
-        const receivedToken = responseData.token; // Assuming the token is provided as "token" in the response
-        setToken(receivedToken);
-        localStorage.setItem('token', receivedToken);
-        console.log(receivedToken);
+        const responseData = await response.text();
+        console.log(responseData);
+        navigate('/login');
         // You can now handle the token, e.g., store it in local storage or a state management system for user authentication
       } else {
-        const errorData = await response.json();
-        setError(errorData.errorMessage);
+        const errorData = await response.text();
+        console.log(errorData);
       }
     } catch (error) {
-      console.error('Error:', error);
-      setError('An error occurred while making the request.');
+      console.error('Error: ', error);
     }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const handleEmailChange = (e) => {
+    const username = e.target.value;
     setFormData({
       ...formData,
-      [name]: value,
+      username,
+    });
+  };
+  const handlePasswordChange = (e) => {
+    const password = e.target.value;
+    setFormData({
+      ...formData,
+      password,
     });
   };
 
@@ -90,8 +90,8 @@ export default function SignUp() {
                   autoComplete="email"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                  value={formData.email}
-                  onChange={handleInputChange}
+                  value={formData.username}
+                  onChange={handleEmailChange}
                 />
               </div>
             </div>
@@ -114,7 +114,7 @@ export default function SignUp() {
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6"
                   value={formData.password}
-                  onChange={handleInputChange}
+                  onChange={handlePasswordChange}
                 />
               </div>
             </div>

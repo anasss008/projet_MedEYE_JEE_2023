@@ -10,6 +10,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Predict from './components/Predict';
 import HWHeader from './components/HWHeader';
+import Result from './components/Result';
 
 function App() {
   return (
@@ -52,6 +53,15 @@ function App() {
             <>
               <HWHeader />
               <Predict />
+            </>
+          }
+        />
+        <Route
+          path="/result"
+          element={
+            <>
+              <HWHeader />
+              <Result />
             </>
           }
         />

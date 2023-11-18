@@ -1,9 +1,13 @@
 import { PhotoIcon } from '@heroicons/react/24/solid';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ReactComponent as Loading } from '../images/tadpole.svg';
+
 const api_url = 'http://localhost:8080/upload';
 
 export default function Predict() {
+  const navigate = useNavigate();
   const initialState = {
     first_name: '',
     last_name: '',
@@ -15,10 +19,17 @@ export default function Predict() {
   const [person, setPerson] = useState(initialState);
   const [prediction, setPrediction] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [spinner, setSpinner] = useState(false);
+
+  useEffect(() => {
+    if (prediction !== null) {
+      navigate('/result', { state: { prediction } });
+    }
+  }, [prediction]);
 
   const submitForm = (e) => {
-    e.preventDefault();
-
+    e.preventDefault(true);
+    setSpinner(true);
     const formData = new FormData();
     formData.append('first_name', person.first_name);
     formData.append('last_name', person.last_name);
@@ -26,15 +37,18 @@ export default function Predict() {
     formData.append('address', person.address);
     formData.append('image', person.image);
 
-    axios
-      .post(api_url, formData)
-      .then((response) => {
-        console.log('sent successfully');
-        setPrediction(response.data.prediction);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    // axios
+    //   .post(api_url, formData)
+    //   .then((response) => {
+    //     console.log('sent successfully');
+    //     setPrediction(response.data.prediction);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+    setTimeout(() => {
+      setPrediction('0.95');
+    }, 2000);
   };
 
   const onChangeHandler = (event) => {
@@ -46,7 +60,6 @@ export default function Predict() {
         return { ...prev, [name]: event.target.files[0] };
       });
     } else {
-
       setPerson((prev) => {
         return { ...prev, [name]: value };
       });
@@ -196,9 +209,14 @@ export default function Predict() {
         </button>
       </div>
 
-      {prediction && (
+      {/* {prediction && (
         <div>
           <p>Model prediction: {prediction}</p>
+        </div>
+      )} */}
+      {spinner && (
+        <div>
+          <Loading className="mx-auto mt-5" />
         </div>
       )}
     </form>

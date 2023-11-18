@@ -31,7 +31,7 @@ export default function Login() {
         setAuth(true);
         navigate('/predict');
       } else {
-        const errorData = await response.json();
+        const errorData = await response.text();
         setError(errorData.errorMessage);
       }
     } catch (error) {
