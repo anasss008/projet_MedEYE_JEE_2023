@@ -1,4 +1,4 @@
-![image](https://github.com/anasss008/projet_MedEYE_JEE_2023/assets/121908160/df05a54e-dcc7-4cb4-aab6-7dbfcac53808)# MedEye - Eye Disease Detection and Patient-Doctor Linkup
+# MedEye - Eye Disease Detection and Patient-Doctor Linkup
 
 ## Introduction
 
@@ -21,8 +21,7 @@ MedEye is a full-stack application dedicated to early detection and efficient ma
 - **Backend**: Spring Boot ![Spring Boot](https://miro.medium.com/v2/resize:fit:700/0*R60lnmJl4hanOBaJ.png)
 - **Database**: PostgreSQL
   ![PostgreSQL](https://www.turnkeylinux.org/files/images/postgresql-logo-for-blog.png)
-- **Machine Learning**:
-- PyTorch ![PyTorch](https://lembarque.com/fichiers/images/articles/pyTorch.png)
+- **Machine Learning**:- PyTorch ![PyTorch](https://lembarque.com/fichiers/images/articles/pyTorch.png)
 - **Serving ML model**:
 - FASTAPI ![FASTAPI](https://miro.medium.com/v2/resize:fit:640/0*zvhlCD9RXDA4qbX5)
 - **Cloud Hosting**: AWS Lambda ![AWS Lambda](https://pro.guslyon.fr/static/aws-lambda-2b1d0cba70279a419837ee007571761d.png)
