@@ -3,8 +3,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
-
 @Controller
 public class UploadController {
 
@@ -45,7 +43,10 @@ public class UploadController {
 
 		try {
 			String response = PostReq.send(fileUrl);
-            return ResponseEntity.ok().body(response);
+			System.out.println(response);
+			// put the image url into the json response
+            return PostReq.modifyJson(response, fileUrl);
+
 		}
 
 		catch(Exception ex){

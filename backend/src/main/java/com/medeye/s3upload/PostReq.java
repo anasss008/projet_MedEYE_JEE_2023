@@ -14,6 +14,20 @@ import java.util.Map;
 public class PostReq {
     private static final String modelApi = "https://6kraqssbjj.execute-api.eu-north-1.amazonaws.com/recognizer/predict";
 
+
+    public static ResponseEntity<String> modifyJson(String response, String fileUrl){
+
+        // Create the JSON response as a string
+        String jsonResponse = "{\"prediction\":\"" +
+                response.replaceAll("[^0-9.e\\-]","").substring(1) +
+                "\", \"url\":\"" + fileUrl + "\"}";
+
+        // Return the JSON response as a string
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return ResponseEntity.ok().headers(headers).body(jsonResponse);
+    }
+
     public static String send(String object_url) throws IOException {
         RestTemplate restTemplate = new RestTemplate();
 
