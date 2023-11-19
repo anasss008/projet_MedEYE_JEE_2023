@@ -46,7 +46,7 @@ export default function Predict() {
         const formatedResponse =
           Math.abs(response.data.prediction) < threshold
             ? 0
-            : response.data.prediction.toFixed(2);
+            : Number(response.data.prediction).toFixed(2);
         setPrediction(formatedResponse);
       })
       .catch(function (error) {
