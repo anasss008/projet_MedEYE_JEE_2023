@@ -37,18 +37,24 @@ export default function Predict() {
     formData.append('address', person.address);
     formData.append('image', person.image);
 
-    // axios
-    //   .post(api_url, formData)
-    //   .then((response) => {
-    //     console.log('sent successfully');
-    //     setPrediction(response.data.prediction);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-    setTimeout(() => {
-      setPrediction('0.95');
-    }, 2000);
+    axios
+      .post(api_url, formData)
+      .then((response) => {
+        console.log('sent successfully');
+        console.log(response.data.prediction);
+        const threshold = 0.01;
+        const formatedResponse =
+          Math.abs(response.data.prediction) < threshold
+            ? 0
+            : response.data.prediction.toFixed(2);
+        setPrediction(formatedResponse);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    // setTimeout(() => {
+    //   setPrediction('0.95');
+    // }, 2000);
   };
 
   const onChangeHandler = (event) => {
