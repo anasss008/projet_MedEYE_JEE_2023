@@ -18,14 +18,15 @@ export default function Predict() {
 
   const [person, setPerson] = useState(initialState);
   const [prediction, setPrediction] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [spinner, setSpinner] = useState(false);
 
   useEffect(() => {
-    if (prediction !== null) {
-      navigate('/result', { state: { prediction } });
+    if (prediction !== null && imageUrl !== null) {
+      navigate('/result', { state: { prediction, imageUrl, person } });
     }
-  }, [prediction]);
+  }, [prediction, imageUrl]);
 
   const submitForm = (e) => {
     e.preventDefault(true);
@@ -41,12 +42,13 @@ export default function Predict() {
       .post(api_url, formData)
       .then((response) => {
         console.log('sent successfully');
-        console.log(response.data.prediction);
+        console.log(response.data);
+        setImageUrl(response.data.url);
         const threshold = 0.01;
         const formatedResponse =
           Math.abs(response.data.prediction) < threshold
             ? 0
-            : response.data.prediction.toFixed(2);
+            : Number(response.data.prediction).toFixed(2);
         setPrediction(formatedResponse);
       })
       .catch(function (error) {
@@ -100,7 +102,7 @@ export default function Predict() {
                   id="first-name"
                   autoComplete="given-name"
                   onChange={onChangeHandler}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -119,7 +121,7 @@ export default function Predict() {
                   id="last-name"
                   autoComplete="family-name"
                   onChange={onChangeHandler}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -137,7 +139,7 @@ export default function Predict() {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                   onChange={onChangeHandler}
                 />
               </div>
@@ -155,7 +157,7 @@ export default function Predict() {
                   type="text"
                   name="address"
                   id="address"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                   onChange={onChangeHandler}
                 />
               </div>
