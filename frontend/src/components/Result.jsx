@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -8,6 +9,9 @@ import {
   HomeIcon,
   CameraIcon,
   DocumentTextIcon,
+  ArrowDownTrayIcon,
+  CheckIcon,
+  HeartIcon,
 } from '@heroicons/react/24/outline';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
@@ -70,6 +74,37 @@ const Result = () => {
     doc.save('report.pdf');
   };
 
+  const [saveSuccess, setSaveSuccess] = useState(false);
+
+  const saveToDb = async () => {
+    const patient = {
+      firstName: person.first_name,
+      lastName: person.last_name,
+      address: person.address,
+      email: person.email,
+      imageUrl: image,
+      prediction: parseFloat(result),
+    };
+    try {
+      const response = await fetch('http://localhost:8080/savetest', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(patient),
+      });
+
+      if (response.ok) {
+        console.log('Patient saved successfully');
+        setSaveSuccess(true);
+      } else {
+        console.error('Error saving patient');
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+    }
+  };
+
   return (
     <div className="my-20">
       <h2 className="text-center text-3xl font-bold">Prediction Result :</h2>
@@ -121,7 +156,7 @@ const Result = () => {
         </div>
         <img src={image} alt="Uploaded" className="mt-2 max-w-xs rounded-lg" />
       </div>
-      <div className="flex justify-center pt-10">
+      <div className="flex justify-center space-x-5 pt-10">
         <button
           type="button"
           onClick={generatePDF}
@@ -130,7 +165,25 @@ const Result = () => {
           <DocumentTextIcon className="h-6 w-6 mr-2" aria-hidden="true" />
           Generate PDF Report
         </button>
+        {/* save to db */}
+        <button
+          className="flex items-center bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded"
+          onClick={saveToDb}
+        >
+          <ArrowDownTrayIcon className="h-5 w-5 mr-2" />
+          Save to Database
+        </button>
+        <button className="flex items-center bg-slate-500 hover:bg-slate-700 text-white font-medium py-2 px-4 rounded">
+          <HeartIcon className="h-5 w-5 mr-2" />
+          Show Nearby Available Doctors
+        </button>
       </div>
+      {saveSuccess && (
+        <div className="text-white flex bg-green-500 rounded px-4 py-2 mt-5 mx-16">
+          <CheckIcon className="w-5" />
+          <div>Patient's Prediction saved successfully to the DataBase</div>
+        </div>
+      )}
     </div>
   );
 };

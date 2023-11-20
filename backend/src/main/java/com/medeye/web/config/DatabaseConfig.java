@@ -19,7 +19,7 @@ public class DatabaseConfig {
         return DataSourceBuilder.create()
                 .url("jdbc:postgresql://localhost:5432/Health")
                 .username("postgres")
-                .password("Pxhd4850")
+                .password("anas")
                 .build();
     }
 
