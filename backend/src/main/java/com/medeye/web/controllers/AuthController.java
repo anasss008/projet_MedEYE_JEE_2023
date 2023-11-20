@@ -19,7 +19,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(@RequestBody Healthworker loginRequest) {
         Healthworker user = healthworkerService.findByUsername(loginRequest.getUsername());
-        if (user != null && user.getPassword().equals(loginRequest.getPassword())) {
+        if (user != null && healthworkerService.validatePassword(loginRequest.getPassword(), user.getPassword())) {
             return ResponseEntity.ok("Authenticated");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Authentication failed");
@@ -32,15 +32,11 @@ public class AuthController {
         if (healthworkerService.findByUsername(signupRequest.getUsername()) != null) {
             return ResponseEntity.badRequest().body("Username is already taken");
         }
-
         Healthworker user = new Healthworker();
         user.setUsername(signupRequest.getUsername());
         user.setPassword(signupRequest.getPassword());
-        // Set other fields like name, email etc
-
         healthworkerService.save(user);
 
         return ResponseEntity.ok("User registered successfully");
     }
 }
-
