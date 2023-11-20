@@ -5,6 +5,7 @@ import com.medeye.web.repositories.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -27,5 +28,17 @@ public class DoctorService {
 
     public void deleteDoctor(Long id) {
         doctorRepository.deleteById(id);
+    }
+
+    public List<Doctor> getDoctorsByVille(String ville) {
+
+        List<Doctor> doctors = doctorRepository.findByVille(ville);
+
+        if(doctors == null || doctors.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        return doctors;
+
     }
 }

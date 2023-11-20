@@ -24,6 +24,13 @@ public class DoctorController {
         return doctorService.getDoctorById(id);
     }
 
+    @GetMapping("/ville/{ville}")
+    public List<Doctor> getDoctorsByVille(@PathVariable String ville){
+
+        return doctorService.getDoctorsByVille(ville);
+
+    }
+
     @PostMapping
     public Doctor saveDoctor(@RequestBody Doctor doctor) {
         return doctorService.saveDoctor(doctor);

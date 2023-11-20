@@ -15,6 +15,7 @@ public class Doctor {
     private String name;
     private String email;
     private String address;
+    private String ville;
     private String phoneNumber;
     private String availability;
 }

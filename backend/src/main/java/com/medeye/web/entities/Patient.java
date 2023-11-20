@@ -22,6 +22,7 @@ public class Patient {
     private String lastName;
     private String email;
     private String address;
+    private String ville;
     private String imageUrl;
     private float prediction;
 
