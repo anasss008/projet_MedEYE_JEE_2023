@@ -1,17 +1,10 @@
-package com.medeye.s3upload;
+package com.medeye.web.services;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
-public class PostReq {
+public class UploadService {
     private static final String modelApi = "https://6kraqssbjj.execute-api.eu-north-1.amazonaws.com/recognizer/predict";
 
 
