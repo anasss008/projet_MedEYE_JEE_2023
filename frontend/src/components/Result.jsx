@@ -9,6 +9,8 @@ import {
   CameraIcon,
   DocumentTextIcon,
 } from '@heroicons/react/24/outline';
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 
 const Result = () => {
   const location = useLocation();
@@ -19,6 +21,54 @@ const Result = () => {
   const person = location.state.person;
   console.log(image);
   console.log(person);
+
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    doc.addImage('/logo.png', 'PNG', 0, 0, 40, 40, '', 'center');
+    const title = 'Cataract Detection Report';
+    const subTitle = 'by MedEye';
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const titleWidth =
+      (doc.getStringUnitWidth(title) * doc.internal.getFontSize()) /
+      doc.internal.scaleFactor;
+    const titleX = (pageWidth - titleWidth) / 2.5; // Calculates the x coordinate for centered alignment
+
+    doc.setFontSize(22);
+    doc.text(title, titleX, 20); // 20 is the y-coordinate
+
+    const subTitleWidth =
+      (doc.getStringUnitWidth(subTitle) * doc.internal.getFontSize()) /
+      doc.internal.scaleFactor;
+    const subTitleX = (pageWidth - subTitleWidth) / 2;
+    doc.setFontSize(16);
+    doc.text(subTitle, subTitleX, 30);
+
+    const tableColumn = ['First Name', 'Last Name', 'Email', 'Prediction'];
+    const tableRows = [];
+
+    tableRows.push([
+      person.first_name,
+      person.last_name,
+      person.email,
+      `${(result * 100).toFixed(2)}%`,
+    ]);
+
+    doc.autoTable({
+      head: [tableColumn],
+      body: tableRows,
+      startY: 80,
+      theme: 'striped',
+      headStyles: { fillColor: [22, 160, 133], textColor: 255, fontSize: 12 },
+      bodyStyles: { fillColor: [255, 255, 255], textColor: 0, fontSize: 10 },
+      alternateRowStyles: { fillColor: [240, 240, 240] },
+    });
+
+    // if (image) {
+    //   doc.addImage(image, 'JPEG', 10, 60, 50, 50);
+    // }
+
+    doc.save('report.pdf');
+  };
 
   return (
     <div className="my-20">
@@ -74,6 +124,7 @@ const Result = () => {
       <div className="flex justify-center pt-10">
         <button
           type="button"
+          onClick={generatePDF}
           className="flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
         >
           <DocumentTextIcon className="h-6 w-6 mr-2" aria-hidden="true" />
