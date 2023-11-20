@@ -15,6 +15,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
+import DoctorsTable from './DoctorsTable';
 
 const Result = () => {
   const location = useLocation();
@@ -105,6 +106,30 @@ const Result = () => {
     }
   };
 
+  const [doctors, setDoctors] = useState(null);
+
+  const checkDoctors = async () => {
+    try {
+      const parts = person.address.split(' ');
+      const ville = parts[parts.length - 1];
+      console.log(ville);
+      const response = await fetch(
+        `http://localhost:8080/api/doctors/ville/${ville}`
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Doctors checked');
+        console.log(data);
+        setDoctors(data);
+      } else {
+        console.error('Error checking docs');
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+    }
+  };
+
   return (
     <div className="my-20">
       <h2 className="text-center text-3xl font-bold">Prediction Result :</h2>
@@ -156,7 +181,7 @@ const Result = () => {
         </div>
         <img src={image} alt="Uploaded" className="mt-2 max-w-xs rounded-lg" />
       </div>
-      <div className="flex justify-center space-x-5 pt-10">
+      <div className="flex justify-center space-x-5 py-16">
         <button
           type="button"
           onClick={generatePDF}
@@ -173,17 +198,21 @@ const Result = () => {
           <ArrowDownTrayIcon className="h-5 w-5 mr-2" />
           Save to Database
         </button>
-        <button className="flex items-center bg-slate-500 hover:bg-slate-700 text-white font-medium py-2 px-4 rounded">
+        <button
+          className="flex items-center bg-slate-500 hover:bg-slate-700 text-white font-medium py-2 px-4 rounded"
+          onClick={checkDoctors}
+        >
           <HeartIcon className="h-5 w-5 mr-2" />
           Show Nearby Available Doctors
         </button>
       </div>
       {saveSuccess && (
-        <div className="text-white flex bg-green-500 rounded px-4 py-2 mt-5 mx-16">
+        <div className="text-white flex bg-green-500 rounded px-4 py-2 mt-5 m-16">
           <CheckIcon className="w-5" />
           <div>Patient's Prediction saved successfully to the DataBase</div>
         </div>
       )}
+      {doctors && <DoctorsTable doctors={doctors} />}
     </div>
   );
 };
