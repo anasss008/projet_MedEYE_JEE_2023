@@ -27,8 +27,8 @@ Our team members are :
 
 ## UML Diagrams
 
-- ![Use case diagram](./sys_design/Use_Case_Diagram.jpg)
-- ![Sequence diagram](./sys_design/Sequence_Diagram.jpg)
+- [Use case diagram](./sys_design/Use_Case_Diagram.jpg)
+- [Sequence diagram](./sys_design/Sequence_Diagram.jpg)
 
 
 ## Technologies used
