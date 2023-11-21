@@ -18,12 +18,18 @@ Our team members are :
 - [TAQI Anas](https://github.com/anasss008)
 
 
-
 ## Key Features
 
 - **Eye Disease Detection**: Utilizes a machine learning model trained on retinal images to detect Cataract eye disease.
 - **Personalized Patient Notifications**: Alert patients when potential eye diseases are detected, encouraging them to seek professional advice.
 - **Doctor Recommendation System**: Links patients with nearby, verified ophthalmologists and optometrists, ensuring they receive appropriate and specialized care.
+
+
+## UML Diagrams
+
+- ![Use case diagram](./sys_design/Use_Case_Diagram.jpg)
+- ![Sequence diagram](./sys_design/Sequence_Diagram.jpg)
+
 
 ## Technologies used
 
@@ -87,6 +93,7 @@ mvn run
                               ,&&&&&&&&&&&&@%*...,/@&&&&&&&&&&&&&.                     
                                       (@&&&&&&&&&&&&&&&&@(                            
                                                         
+                                                        
                 /$$      /$$ /$$$$$$$$ /$$$$$$$  /$$$$$$$$ /$$     /$$ /$$$$$$$$
                 | $$$    /$$$| $$_____/| $$__  $$| $$_____/|  $$   /$$/| $$_____/
                 | $$$$  /$$$$| $$      | $$  \ $$| $$       \  $$ /$$/ | $$      
@@ -95,7 +102,8 @@ mvn run
                 | $$\  $ | $$| $$      | $$  | $$| $$          | $$    | $$      
                 | $$ \/  | $$| $$$$$$$$| $$$$$$$/| $$$$$$$$    | $$    | $$$$$$$$
                 |__/     |__/|________/|_______/ |________/    |__/    |________/
-                  MEDICAL       EYE     DISEASE  EXAMINATION  YOKED    ENGAGEMENT
+
+                M E D I C A L   E Y E   DISEASE  EXAMINATION   YOKED   ENGAGEMENT
                                                                  
                                                                  
                                                                  
