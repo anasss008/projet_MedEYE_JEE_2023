@@ -1,15 +1,18 @@
 import React from 'react';
 import { ReactComponent as SvgComponent6 } from '../images/svg6.svg';
+import { LanguageContext } from '../translationComponents/LanguageContext';
+import { useContext } from 'react';
 
 const ContactUs = () => {
+  const { translations } = useContext(LanguageContext);
   return (
     <div
       className="flex flex-col items-center justify-center space-y-8 p-8"
       id="contact"
     >
-      <h2 className="text-3xl font-semibold mb-4">Contact Us</h2>
+      <h2 className="text-3xl font-semibold mb-4">{translations.contact_us}</h2>
       <p className="text-center mb-4 font-light">
-        If you have any question you can contact us by email
+        {translations.contact_prompt}
       </p>
       <div className="flex flex-col items-center">
         <SvgComponent6 className="w-20" />

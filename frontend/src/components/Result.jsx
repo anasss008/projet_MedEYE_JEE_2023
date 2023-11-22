@@ -16,8 +16,11 @@ import {
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 import DoctorsTable from './DoctorsTable';
+import { LanguageContext } from '../translationComponents/LanguageContext';
+import { useContext } from 'react';
 
 const Result = () => {
+  const { translations } = useContext(LanguageContext);
   const location = useLocation();
   const result = location.state
     ? location.state.prediction
@@ -132,51 +135,54 @@ const Result = () => {
 
   return (
     <div className="my-20">
-      <h2 className="text-center text-3xl font-bold">Prediction Result :</h2>
+      <h2 className="text-center text-3xl font-bold">
+        {translations.prediction} :
+      </h2>
       <div className="w-1/5 mx-auto my-10">
         <CircularProgressbar value={result * 100} text={`${result * 100}%`} />
       </div>
       <p className="text-center pb-5">
-        Based on the result of our Machine Learning Model the prediction for the
-        Patient is to be{' '}
+        {translations.prediction_output}{' '}
         <span className="font-bold text-2xl">{result * 100} % </span>
-        having Cataract disease
+        {translations.having_cataract}
       </p>
       <div className="border"></div>
-      <h2 className="font-semibold text-lg text-center py-5">Patient Info :</h2>
+      <h2 className="font-semibold text-lg text-center py-5">
+        {translations.patient_info} :
+      </h2>
       <div className="p-4 border border-gray-200 rounded-lg shadow-sm pl-28 space-y-12">
         <div className="flex items-center space-x-2 mb-2 pt-5">
           <UserCircleIcon className="h-5 w-5 text-gray-500" />
           <p>
-            <strong>First Name:</strong> {person.first_name}
+            <strong>{translations.first_name}:</strong> {person.first_name}
           </p>
         </div>
 
         <div className="flex items-center space-x-2 mb-2">
           <UserCircleIcon className="h-5 w-5 text-gray-500" />
           <p>
-            <strong>Last Name:</strong> {person.last_name}
+            <strong>{translations.last_name}:</strong> {person.last_name}
           </p>
         </div>
 
         <div className="flex items-center space-x-2 mb-2">
           <AtSymbolIcon className="h-5 w-5 text-gray-500" />
           <p>
-            <strong>Email:</strong> {person.email}
+            <strong>{translations.email}:</strong> {person.email}
           </p>
         </div>
 
         <div className="flex items-center space-x-2 mb-2">
           <HomeIcon className="h-5 w-5 text-gray-500" />
           <p>
-            <strong>Address:</strong> {person.address}
+            <strong>{translations.address}:</strong> {person.address}
           </p>
         </div>
 
         <div className="flex items-center space-x-2">
           <CameraIcon className="h-5 w-5 text-gray-500" />
           <p>
-            <strong>Uploaded Image:</strong>
+            <strong>{translations.uploaded_image}</strong>
           </p>
         </div>
         <img src={image} alt="Uploaded" className="mt-2 max-w-xs rounded-lg" />
@@ -188,7 +194,7 @@ const Result = () => {
           className="flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
         >
           <DocumentTextIcon className="h-6 w-6 mr-2" aria-hidden="true" />
-          Generate PDF Report
+          {translations.pdf_report}
         </button>
         {/* save to db */}
         <button
@@ -196,20 +202,20 @@ const Result = () => {
           onClick={saveToDb}
         >
           <ArrowDownTrayIcon className="h-5 w-5 mr-2" />
-          Save to Database
+          {translations.save_to_database}
         </button>
         <button
           className="flex items-center bg-slate-500 hover:bg-slate-700 text-white font-medium py-2 px-4 rounded"
           onClick={checkDoctors}
         >
           <HeartIcon className="h-5 w-5 mr-2" />
-          Show Nearby Available Doctors
+          {translations.nearby_doctors}
         </button>
       </div>
       {saveSuccess && (
         <div className="text-white flex bg-green-500 rounded px-4 py-2 mt-5 m-16">
           <CheckIcon className="w-5" />
-          <div>Patient's Prediction saved successfully to the DataBase</div>
+          <div>{translations.patient_saved}</div>
         </div>
       )}
       {doctors && <DoctorsTable doctors={doctors} />}

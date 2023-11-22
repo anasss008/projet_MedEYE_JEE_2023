@@ -3,14 +3,18 @@ import Khlaif from '../images/khlaif.JPG';
 import Anas from '../images/photo_anas.jpeg';
 import Yassine from '../images/badraoui.jfif';
 import Ayoub from '../images/sarab.jfif';
+import { LanguageContext } from '../translationComponents/LanguageContext';
+import { useContext } from 'react';
 
 function About() {
+  const { translations } = useContext(LanguageContext);
   return (
     <div className="pt-36 space-y-8" id="about">
-      <h1 className="font-extrabold text-4xl text-center">About</h1>
+      <h1 className="font-extrabold text-4xl text-center">
+        {translations.about_us}
+      </h1>
       <p className="text-center text-gray-600">
-        We are a team of second year studens of Institut National des Postes et
-        Telecommunications, passionate about AI, ML and software engineering
+        {translations.about_description}
       </p>
       <div className="flex justify-center">
         <div className="w-1/5">

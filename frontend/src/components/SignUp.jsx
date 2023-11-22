@@ -15,8 +15,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { LanguageContext } from '../translationComponents/LanguageContext';
+import { useContext } from 'react';
 
 export default function SignUp() {
+  const { translations } = useContext(LanguageContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
@@ -69,7 +72,7 @@ export default function SignUp() {
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 px-8">
         <div>
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign up to an account
+            {translations.sign_up_title}
           </h2>
         </div>
 
@@ -80,7 +83,7 @@ export default function SignUp() {
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Email address
+                {translations.email}
               </label>
               <div className="mt-2">
                 <input
@@ -102,7 +105,7 @@ export default function SignUp() {
                   htmlFor="password"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Password
+                  {translations.password}
                 </label>
               </div>
               <div className="mt-2">
@@ -120,42 +123,22 @@ export default function SignUp() {
             </div>
 
             <div>
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Verify Password
-                </label>
-              </div>
-              <div className="mt-2">
-                <input
-                  id="verifypassword"
-                  name="verifypassword"
-                  type="password"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6"
-                />
-              </div>
-            </div>
-
-            <div>
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500"
               >
-                Sign up
+                {translations.sign_up_input}
               </button>
             </div>
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Already have an account{' '}
+            {translations.account_dispo}{' '}
             <Link
               to="/login"
               className="font-semibold leading-6 text-gray-900 hover:text-gray-500"
             >
-              Login
+              {translations.log_in}
             </Link>
           </p>
         </div>

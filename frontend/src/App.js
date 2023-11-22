@@ -11,62 +11,67 @@ import SignUp from './components/SignUp';
 import Predict from './components/Predict';
 import HWHeader from './components/HWHeader';
 import Result from './components/Result';
+import { LanguageProvider } from './translationComponents/LanguageContext';
+import LanguageSwitcher from './translationComponents/LanguageSwitcher';
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Header />
-              <Hero />
-              <About />
-              <Faq />
-              <HowItWorks />
-              <ContactUs />
-            </>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <>
-              <Header />
-              <Login />
-            </>
-          }
-        />
-        <Route
-          path="/sign-up"
-          element={
-            <>
-              <Header />
-              <SignUp />
-            </>
-          }
-        />
-        <Route
-          path="/predict"
-          element={
-            <>
-              <HWHeader />
-              <Predict />
-            </>
-          }
-        />
-        <Route
-          path="/result"
-          element={
-            <>
-              <HWHeader />
-              <Result />
-            </>
-          }
-        />
-      </Routes>
-      <Footer />
+      <LanguageProvider>
+        <LanguageSwitcher />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <Hero />
+                <About />
+                <Faq />
+                <HowItWorks />
+                <ContactUs />
+              </>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <>
+                <Header />
+                <Login />
+              </>
+            }
+          />
+          <Route
+            path="/sign-up"
+            element={
+              <>
+                <Header />
+                <SignUp />
+              </>
+            }
+          />
+          <Route
+            path="/predict"
+            element={
+              <>
+                <HWHeader />
+                <Predict />
+              </>
+            }
+          />
+          <Route
+            path="/result"
+            element={
+              <>
+                <HWHeader />
+                <Result />
+              </>
+            }
+          />
+        </Routes>
+        <Footer />
+      </LanguageProvider>
     </Router>
   );
 }

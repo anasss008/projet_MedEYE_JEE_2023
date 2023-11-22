@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { LanguageContext } from '../translationComponents/LanguageContext';
+import { useContext } from 'react';
 
 export default function Login() {
+  const { translations } = useContext(LanguageContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
@@ -60,7 +63,7 @@ export default function Login() {
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 px-8">
         <div>
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Log in to your account
+            {translations.login_title}
           </h2>
         </div>
 
@@ -68,7 +71,7 @@ export default function Login() {
           <form className="space-y-6" action="#" onSubmit={handleSubmit}>
             <div>
               <label className="block text-sm font-medium leading-6 text-gray-900">
-                Email address
+                {translations.email}
               </label>
               <div className="mt-2">
                 <input
@@ -88,7 +91,7 @@ export default function Login() {
                   htmlFor="password"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Password
+                  {translations.password}
                 </label>
               </div>
               <div className="mt-2">
@@ -109,7 +112,7 @@ export default function Login() {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500"
               >
-                Log in
+                {translations.log_in}
               </button>
             </div>
           </form>
@@ -118,12 +121,12 @@ export default function Login() {
           {error && <p className="text-center text-sm text-red-500">{error}</p>}
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Don't have an account{' '}
+            {translations.no_account_prompt}{' '}
             <Link
               to="/sign-up"
               className="font-semibold leading-6 text-gray-900 hover:text-gray-500"
             >
-              Sign-up
+              {translations.sign_up_input}
             </Link>
           </p>
         </div>

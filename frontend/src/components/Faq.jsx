@@ -1,33 +1,31 @@
 import React from 'react';
 import { useState } from 'react';
+import { LanguageContext } from '../translationComponents/LanguageContext';
+import { useContext } from 'react';
 
 function Faq() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const { translations } = useContext(LanguageContext);
 
-  // Function to toggle the visibility of an answer
   const toggleAnswer = (index) => {
     setActiveIndex(index);
   };
   const faqData = [
     {
-      question: 'What is MedEye?',
-      answer:
-        'MedEye is an advanced platform that uses machine learning algorithms to provide predictions for potential eye diseases based on the information or images provided .',
+      question: translations.faq_question1,
+      answer: translations.faq_answer1,
     },
     {
-      question: "How accurate is MedEye's prediction?",
-      answer:
-        "MedEye boasts a high accuracy rate due to its sophisticated algorithms. While our platform provides valuable insights, it's essential to consult with a healthcare professional for a definitive diagnosis.",
+      question: translations.faq_question2,
+      answer: translations.faq_answer2,
     },
     {
-      question: 'Is MedEye a replacement for professional medical advice?',
-      answer:
-        'No. MedEye is a supplementary tool designed to provide preliminary insights. Always seek the advice of a qualified healthcare professional regarding any medical concerns.',
+      question: translations.faq_question3,
+      answer: translations.faq_answer3,
     },
     {
-      question: 'Is my data safe with MedEye?',
-      answer:
-        'Absolutely. We prioritize user privacy and data security. All images and data you provide are encrypted and stored securely, and we never share them with third parties without explicit consent.',
+      question: translations.faq_question4,
+      answer: translations.faq_answer4,
     },
   ];
   return (
@@ -35,16 +33,16 @@ function Faq() {
       <div>
         <div className="max-w-2xl text-center">
           <h2 className="font-bold leading-tight text-black text-4xl">
-            Frequently Asked Questions
+            {translations.faq_heading}
           </h2>
           <p className="text-center text-gray-600 textbase my-9">
-            Didn’t find the answer you are looking for?{' '}
+            {translations.faq_contact_prompt}{' '}
             <a
               href="#contact"
               title=""
               className="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
             >
-              Contact our support
+              {translations.contact_support}
             </a>
           </p>
         </div>

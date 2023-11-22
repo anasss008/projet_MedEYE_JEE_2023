@@ -3,10 +3,13 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as Loading } from '../images/tadpole.svg';
+import { LanguageContext } from '../translationComponents/LanguageContext';
+import { useContext } from 'react';
 
 const api_url = 'http://localhost:8080/upload';
 
 export default function Predict() {
+  const { translations } = useContext(LanguageContext);
   const navigate = useNavigate();
   const initialState = {
     first_name: '',
@@ -79,10 +82,10 @@ export default function Predict() {
       <div className="max-w-xl py-20 mx-auto space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base text-center font-semibold leading-7 text-gray-900">
-            Enter Patient Information
+            {translations.enter_patient_info}
           </h2>
           <p className="mt-1 text-sm text-center leading-6 text-gray-600">
-            This information should be accurate.
+            {translations.info_accuracy_prompt}
           </p>
         </div>
 
@@ -93,7 +96,7 @@ export default function Predict() {
                 htmlFor="first-name"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                First name
+                {translations.first_name}
               </label>
               <div className="mt-2">
                 <input
@@ -112,7 +115,7 @@ export default function Predict() {
                 htmlFor="last-name"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Last name
+                {translations.last_name}
               </label>
               <div className="mt-2">
                 <input
@@ -131,7 +134,7 @@ export default function Predict() {
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Email address
+                {translations.email}
               </label>
               <div className="mt-2">
                 <input
@@ -150,7 +153,7 @@ export default function Predict() {
                 htmlFor="address"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Address
+                {translations.address}
               </label>
               <div className="mt-2">
                 <input
@@ -168,7 +171,7 @@ export default function Predict() {
               htmlFor="cover-photo"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
-              Upload Patient's Fundus photo
+              {translations.upload_fundus_photo}
             </label>
             {!imagePreview && (
               <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
@@ -182,7 +185,7 @@ export default function Predict() {
                       htmlFor="file-upload"
                       className="relative cursor-pointer rounded-md bg-white font-semibold text-gray-600 hover:text-gray-500"
                     >
-                      <span>Upload a file</span>
+                      <span>{translations.upload_file_prompt}</span>
                       <input
                         id="file-upload"
                         name="image"
@@ -191,10 +194,10 @@ export default function Predict() {
                         onChange={onChangeHandler}
                       />
                     </label>
-                    <p className="pl-1">or drag and drop</p>
+                    <p className="pl-1">{translations.or_drag_drop}</p>
                   </div>
                   <p className="text-xs leading-5 text-gray-600">
-                    PNG, JPG, GIF up to 10MB
+                    {translations.file_formats}
                   </p>
                 </div>
               </div>
@@ -213,7 +216,7 @@ export default function Predict() {
           type="submit"
           className="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
         >
-          Send for Prediction
+          {translations.submit_button}
         </button>
       </div>
 

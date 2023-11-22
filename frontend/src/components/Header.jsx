@@ -1,8 +1,11 @@
 import React from 'react';
 import logo from '../images/logo.svg.svg';
 import { Link } from 'react-router-dom';
+import { LanguageContext } from '../translationComponents/LanguageContext';
+import { useContext } from 'react';
 
 function Header() {
+  const { translations } = useContext(LanguageContext);
   return (
     <header className="bg-white pb-0">
       <div className="mx-auto max-w-7xl px-8">
@@ -19,7 +22,7 @@ function Header() {
               className="text-base font-medium text-black transition-all duration-200 hover:text-gray-600 focus:text-gray-600"
             >
               {' '}
-              How It Works{' '}
+              {translations.how_it_works}{' '}
             </a>
 
             <a
@@ -28,7 +31,7 @@ function Header() {
               className="text-base font-medium text-black transition-all duration-200 hover:text-gray-600 focus:text-gray-600"
             >
               {' '}
-              FAQ{' '}
+              {translations.faq}{' '}
             </a>
 
             <a
@@ -37,7 +40,7 @@ function Header() {
               className="text-base font-medium text-black transition-all duration-200 hover:text-gray-600 focus:text-gray-600"
             >
               {' '}
-              About Us{' '}
+              {translations.about_us}{' '}
             </a>
 
             <a
@@ -46,7 +49,7 @@ function Header() {
               className="text-base font-medium text-black transition-all duration-200 hover:text-gray-600 focus:text-gray-600"
             >
               {' '}
-              Contact Us{' '}
+              {translations.contact_us}{' '}
             </a>
           </div>
 
@@ -55,7 +58,7 @@ function Header() {
             className="items-center justify-center px-6 py-2 ml-10 text-base text-white transition-all duration-200 bg-gray-900 border border-transparent rounded-md inline-flex hover:bg-gray-700 focus:bg-gray-700"
           >
             {' '}
-            Login{' '}
+            {translations.login}{' '}
           </Link>
         </nav>
       </div>
