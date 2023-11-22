@@ -20,6 +20,7 @@ public class HealthworkerService {
     public Healthworker findByUsername(String username) {
         return healthworkerRepository.findByUsername(username).orElse(null);
     }
+
     public void save(Healthworker healthworker) {
         healthworker.setPassword(passwordEncoder.encode(healthworker.getPassword()));
         healthworkerRepository.save(healthworker);

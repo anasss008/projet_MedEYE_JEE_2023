@@ -121,7 +121,6 @@ export default function SignUp() {
                 />
               </div>
             </div>
-
             <div>
               <button
                 type="submit"
