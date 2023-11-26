@@ -23,9 +23,11 @@ Our team members are :
 - **Eye Disease Detection**: Utilizes a machine learning model trained on retinal images to detect Cataract eye disease.
 - **Personalized Patient Notifications**: Alert patients when potential eye diseases are detected, encouraging them to seek professional advice.
 - **Doctor Recommendation System**: Links patients with nearby, verified ophthalmologists and optometrists, ensuring they receive appropriate and specialized care.
-- **multilingual Support**:   Our app offers multilingual support (english and french), adding additional languages can easily be achieved by adding a json file in frontend/src/translation.
+- **Multilingual Support**:   Our app offers multilingual support (english and french), adding additional languages can easily be achieved by adding a json file in frontend/src/translation.
 
-
+## Agile Project Management
+We used Agile method to manage our project (based on three weeks sprint : you can find the details in the link below)
+- [Scrum Board](https://meadow-sink-344.notion.site/Agile-Project-Management-c1be08ff922946a898cce075c48aaae3)
 ## UML Diagrams
 
 - [Use case diagram](./sys_design/Use_Case_Diagram.jpg)
