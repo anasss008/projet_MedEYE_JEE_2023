@@ -70,7 +70,7 @@ npm run
 
 # Run the backend
 cd backend
-mvn run
+mvn spring-boot:run
 ```
 
 ```
