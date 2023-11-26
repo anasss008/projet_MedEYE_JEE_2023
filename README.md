@@ -56,9 +56,7 @@ git clone https://github.com/anasss008/projet_MedEYE_JEE_2023.git
 cd frontend
 npm install
 
-# Navigate to the backend directory and install dependencies
-cd ../backend
-mvn install
+# Navigate to the backend directory and install dependencies from pom.xml using any IDE.
 ```
 
 ## Run
