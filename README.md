@@ -23,6 +23,7 @@ Our team members are :
 - **Eye Disease Detection**: Utilizes a machine learning model trained on retinal images to detect Cataract eye disease.
 - **Personalized Patient Notifications**: Alert patients when potential eye diseases are detected, encouraging them to seek professional advice.
 - **Doctor Recommendation System**: Links patients with nearby, verified ophthalmologists and optometrists, ensuring they receive appropriate and specialized care.
+- **multilingual Support**:   Our app offers multilingual support (english and french), adding additional languages can easily be achieved by adding a json file in frontend/src/translation.
 
 
 ## UML Diagrams
